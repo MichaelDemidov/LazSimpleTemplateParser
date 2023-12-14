@@ -7,7 +7,7 @@ What Is It?
 Sometimes your application needs to display some rich text, and it is easier and faster to use HTML or even a plain text than to program the behavior of visual components (for example, I use IPro components to display HTML). For such situations it would be convenient to use text templates. Not just `Format()` or `StringReplace()` but something slightly more powerful. So one day I created this project.
 
 > [!CAUTION]
-> As its name suggests, it is very simple thing and not intended to be a good example of programming tehniques. I created it for my own puposes and uploaded it in hope that it might be useful to someone else.
+> As its name suggests, it is very simple thing and not intended to be a good example of any programming techniques. I created it for my own puposes and uploaded it in hope that it might be useful to someone else.
 
 The `SimpleTemplateParser` class uses syntax inspired by [Twig](https://twig.symfony.com) and other well-known HTML template systems. The template text seems like this:
 
