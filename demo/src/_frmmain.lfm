@@ -1,0 +1,55 @@
+object frmMain: TfrmMain
+  Left = 684
+  Height = 501
+  Top = 238
+  Width = 860
+  Caption = 'frmMain'
+  ClientHeight = 501
+  ClientWidth = 860
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '2.2.6.0'
+  object htmlMain: TIpHtmlPanel
+    Left = 0
+    Height = 460
+    Top = 41
+    Width = 860
+    Align = alClient
+    BorderStyle = bsSingle
+    FixedTypeface = 'Courier New'
+    DefaultTypeFace = 'default'
+    DefaultFontSize = 12
+    FlagErrors = False
+    PrintSettings.MarginLeft = 0.5
+    PrintSettings.MarginTop = 0.5
+    PrintSettings.MarginRight = 0.5
+    PrintSettings.MarginBottom = 0.5
+    PrintSettings.Preview.Left = 960
+    PrintSettings.Preview.Top = 270
+    PrintSettings.Preview.Width = 2880
+    PrintSettings.Preview.Height = 810
+    TabOrder = 0
+  end
+  object pnlToolbar: TPanel
+    Left = 0
+    Height = 41
+    Top = 0
+    Width = 860
+    Align = alTop
+    AutoSize = True
+    BevelOuter = bvNone
+    ClientHeight = 41
+    ClientWidth = 860
+    TabOrder = 1
+    object btnLoadNews: TButton
+      Left = 8
+      Height = 25
+      Top = 8
+      Width = 115
+      BorderSpacing.Around = 8
+      Caption = 'Load'
+      OnClick = btnLoadNewsClick
+      TabOrder = 0
+    end
+  end
+end

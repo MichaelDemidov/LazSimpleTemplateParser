@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>Parser Demo</title>
+  </head>
+  <body style="font-family: {{FONT_NAME}}; font-style: {{FONT_STYLE}}; font-weight: {{FONT_WEIGHT}}; font-size: {{FONT_SIZE}}pt; color: #{{FONT_COLOR}}; background-color: #{{BACK_COLOR}}">
+    <h1>News</h1>
+    {%if news%}<dl>
+    {%for news%}
+      <h2>{{news}}</h2>
+      <em>{{news}}</em>
+      <p>{{news}}</p>
+    {%endfor%}
+    {%else%}<p>Click the <em>Load</em> button to update the news list!</p>{%endif%}
+  </body>
+</html>

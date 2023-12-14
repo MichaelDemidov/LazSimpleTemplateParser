@@ -1,0 +1,14 @@
+First Version of TSimpleTemplateParser
+2023-12-13
+There is a first release of the TSimpleTemplateParser class on the GitHub. To be continued
+
+
+
+
+Be Careful!
+2023-12-25
+Something incomprehensible is happening around us. You should be prepared for any turn of events! The news is being updated...
+
+Merry Christmas
+2023-12-25
+Reliable sources claim that Santa's sleigh is already flying over the northern countries

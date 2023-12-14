@@ -1,0 +1,8 @@
+*.code-workspace
+backup
+demo/lib
+demo/backup
+demo/*.exe
+demo/*.lps
+demo/*.dbg
+demo/LKLTest
