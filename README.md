@@ -4,10 +4,10 @@ LazSimpleTemplateParser
 What Is It?
 -----------
 
-Sometimes your application needs to display some rich text, and it is easier and faster to use HTML or even a plain text than to program the behavior of visual components (for example, I use IPro components to display HTML). For such situations it would be convenient to use text templates. Not just `Format()` or `StringReplace()` but something slightly more powerful. So one day I created this project.
+Sometimes your application needs to display some rich text, and it is easier and faster to use HTML or even a plain text than to program the behavior of visual components—for example, I use IPro components to display HTML. In such situations, it would be convenient to use some kind of text templates with data insertions (not just `Format()` or `StringReplace()` but something slightly more powerful). So one day I created this project.
 
 > [!CAUTION]
-> As its name suggests, it is very simple thing and not intended to be a good example of any programming techniques. I created the project for my own purposes and uploaded it in hope that it might be useful to someone else.
+> As its name suggests, it is very simple thing that is not intended to be a good example of any programming techniques. I created the project for my own purposes and uploaded it in hope that it might be useful to someone else.
 
 The `SimpleTemplateParser` class uses syntax inspired by [Twig](https://twig.symfony.com) and other well-known HTML template systems. The template text seems like this:
 
@@ -34,7 +34,7 @@ You may notice the identifier `Query1`, which hints that the template engine is 
 Template Syntax
 -------------
 
-All template text consists of regular text and special inserts. The markers of these special inserts are the symbols `{{`, `}}`, `{%`, and `%}`. Double curly braces `{{ }}` indicate data to be inserted, and curly braces with a percentage `{% %}` mark keywords (these braces nesting not allowed). Additionally, the double question mark symbol `??` is used, see below. Here is a full list of the possible syntax entities:
+All template text consists of regular text and special commands. The markers of these commands are the symbols `{{`, `}}`, `{%`, and `%}`. Double curly braces `{{ }}` indicate data to be inserted, and curly braces with a percentage `{% %}` mark keywords (these braces nesting not allowed). Additionally, the double question mark symbol `??` is used, see below. Here is a full list of the possible syntax entities:
 
 ### Plain Text
 
