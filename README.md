@@ -7,7 +7,7 @@ What Is It?
 Sometimes your application needs to display some rich text, and it is easier and faster to use HTML or even a plain text than to program the behavior of visual components (for example, I use IPro components to display HTML). For such situations it would be convenient to use text templates. Not just `Format()` or `StringReplace()` but something slightly more powerful. So one day I created this project.
 
 > [!CAUTION]
-> As its name suggests, it is very simple thing and not intended to be a good example of any programming techniques. I created it for my own purposes and uploaded it in hope that it might be useful to someone else.
+> As its name suggests, it is very simple thing and not intended to be a good example of any programming techniques. I created the project for my own purposes and uploaded it in hope that it might be useful to someone else.
 
 The `SimpleTemplateParser` class uses syntax inspired by [Twig](https://twig.symfony.com) and other well-known HTML template systems. The template text seems like this:
 
@@ -36,13 +36,24 @@ Template Syntax
 
 All template text consists of regular text and special inserts. The markers of these special inserts are the symbols `{{`, `}}`, `{%`, and `%}`. Double curly braces `{{ }}` indicate data to be inserted, and curly braces with a percentage `{% %}` mark keywords (these braces nesting not allowed). Additionally, the double question mark symbol `??` is used, see below. Here is a full list of the possible syntax entities:
 
+### Plain Text
+
 * *plain text:* neither `{{` nor `{%` open braces, output is the same text
+
+### Data Output
+
 * *variable or text file line:* `{{VAR_NAME}}` (the name is case-insensitive), output is a value of the `TSimpleTemplateParser.Variables` array, or a value from `AVarList` parameter of the `CreateContent` procedure (see below), or a text file line, see below
 * *data field:* `{{DataSet.FieldName}}` or `{{DataSet.FieldName??Coalesce string}}`, output is a value of the field from current dataset record. If the field is null and coalesce string is specified then output is the coalesce string
+
+### Conditional Operators (If)
+
 * *if (with variable):* `{%if VAR_NAME%}...{%else%}...{%endif%}` or `{%if VAR_NAME%}...{%endif%}`. Checks `TSimpleTemplateParser.Variables[VAR_NAME]` and `AVarList` parameter of the `CreateContent` procedure (see below). If it exists then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}` (if specified). **The parser doesn't check the variable value, only its existence!**
 * *if (with text file alias):* `{%if Text%}...{%else%}...{%endif%}` or `{%if Text%}...{%endif%}`. Checks if the text file alias is presented in the `TSimpleTemplateParser.TextFiles` array. If it exists then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}` (if specified)
 * *if (with dataset):* `{%if Dataset%}...{%else%}...{%endif%}` or `{%if Dataset%}...{%endif%}`. Checks the dataset. If it is not empty then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}` (if specified)
 * *if (with data field):* `{%if Dataset.Field%}...{%else%}...{%endif%}` or `{%if Dataset.Field%}...{%endif%}`. Checks the field value. If it is not NULL then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}`  (if specified). **The parser doesn't check the field type and value, only NULL / not NULL!**
+
+### Loop Operators (For)
+
 * *for (with text file alias):* `{%for Text%}...{{Text}}...{%endfor%}`. Enumerates all lines in the text file (alias is a value in the `TSimpleTemplateParser.TextFiles` array) and processes each line. Variable with the same name as the text file alias (`Text`) outputs as the text file line, empty lines are skipped
 * *for (with dataset):* `{%for Dataset%}...{%endfor%}`. Enumerates all dataset records and processes each record (there might be field values, if-checks, etc.).
 
@@ -127,7 +138,7 @@ A list of variables for `{{VAR_NAME}}` substitution.
 property TextFiles[Name: string]: string;
 ```
 
-A list of text file aliases and paths. E.g.: `TextFiles['Text'] := C:\myproject\mytext.txt`.
+A list of text file aliases and paths. E.g.: `TextFiles['Text'] := 'C:\myproject\mytext.txt'`.
 
 Demo
 ----
