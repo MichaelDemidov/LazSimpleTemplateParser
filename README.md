@@ -34,20 +34,20 @@ You may notice the identifier `Query1`, which hints that the template engine is 
 Template Syntax
 -------------
 
-All template text consists of regular text and special commands. The markers of these commands are the symbols `{{`, `}}`, `{%`, and `%}`. Double curly braces `{{ }}` indicate data to be inserted, and curly braces with a percentage `{% %}` mark keywords (these braces nesting not allowed). Additionally, the double question mark symbol `??` is used, see below. Here is a full list of the possible syntax entities:
+All template text consists of regular text and special commands. The markers of these commands are the symbols `{{`, `}}`, `{%`, and `%}`. Double curly braces `{{ }}` indicate data to be inserted, and curly braces with a percentage `{% %}` mark keywords (these braces nesting not allowed). Additionally, the double question mark symbol `??` is used, see [Data Output](#data-output) subsection. Here is a full list of the possible syntax entities:
 
 ### Plain Text
 
-* *plain text:* neither `{{` nor `{%` open braces, output is the same text
+* *plain text:* neither `{{` nor `{%` open braces, output is the same text as input
 
 ### Data Output
 
-* *variable or text file line:* `{{VAR_NAME}}` (the name is case-insensitive), output is a value of the `TSimpleTemplateParser.Variables` array, or a value from `AVarList` parameter of the `CreateContent` procedure (see below), or a text file line, see below
+* *variable or text file line:* `{{VAR_NAME}}` (the name is case-insensitive), output is a value of the `TSimpleTemplateParser.Variables` array, or a value from `AVarList` parameter of the `CreateContent()` procedure (see [Public Properties And Methods](#public-properties-and-methods) section), or a text file line (see [Loop Operators](#loop-operators-for) subsection)
 * *data field:* `{{DataSet.FieldName}}` or `{{DataSet.FieldName??Coalesce string}}`, output is a value of the field from current dataset record. If the field is null and coalesce string is specified then output is the coalesce string
 
 ### Conditional Operators (If)
 
-* *if (with variable):* `{%if VAR_NAME%}...{%else%}...{%endif%}` or `{%if VAR_NAME%}...{%endif%}`. Checks `TSimpleTemplateParser.Variables[VAR_NAME]` and `AVarList` parameter of the `CreateContent` procedure (see below). If it exists then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}` (if specified). **The parser doesn't check the variable value, only its existence!**
+* *if (with variable):* `{%if VAR_NAME%}...{%else%}...{%endif%}` or `{%if VAR_NAME%}...{%endif%}`. Checks `TSimpleTemplateParser.Variables[VAR_NAME]` and `AVarList` parameter of the `CreateContent()` procedure (see [Public Properties And Methods](#public-properties-and-methods) section). If it exists then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}` (if specified). **The parser doesn't check the variable value, only its existence!**
 * *if (with text file alias):* `{%if Text%}...{%else%}...{%endif%}` or `{%if Text%}...{%endif%}`. Checks if the text file alias is presented in the `TSimpleTemplateParser.TextFiles` array. If it exists then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}` (if specified)
 * *if (with dataset):* `{%if Dataset%}...{%else%}...{%endif%}` or `{%if Dataset%}...{%endif%}`. Checks the dataset. If it is not empty then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}` (if specified)
 * *if (with data field):* `{%if Dataset.Field%}...{%else%}...{%endif%}` or `{%if Dataset.Field%}...{%endif%}`. Checks the field value. If it is not NULL then process a part between `{%if…}` and `{%else%}`, otherwise process a part between `{%else%}` and `{%endif%}`  (if specified). **The parser doesn't check the field type and value, only NULL / not NULL!**
@@ -57,7 +57,9 @@ All template text consists of regular text and special commands. The markers of 
 * *for (with text file alias):* `{%for Text%}...{{Text}}...{%endfor%}`. Enumerates all lines in the text file (alias is a value in the `TSimpleTemplateParser.TextFiles` array) and processes each line. Variable with the same name as the text file alias (`Text`) outputs as the text file line, empty lines are skipped
 * *for (with dataset):* `{%for Dataset%}...{%endfor%}`. Enumerates all dataset records and processes each record (there might be field values, if-checks, etc.).
 
-Thats all! It is **really** simple parser.
+Thats all, folks! © 
+
+It is **really** simple parser.
 
 Thus, the demo code above means:
 
@@ -114,7 +116,7 @@ Add / remove the dataset. The `DisableScrollEvents` option means: if it is true 
 procedure Parse;
 ```
 
-Start parsing. Usually you do not need to call this method manually because it is called from `CreateContent`.
+Start parsing. Usually you do not need to call this method manually because it is called from `CreateContent()`.
 
 ``` delphi
 procedure CreateContent(AVarList: TStrings = nil);
@@ -126,7 +128,7 @@ Insert the previously stored constants, variables, dataset data, etc. into the `
 property Content: string read FContent;
 ```
 
-The content after inserting the data into the template (i.e. `CreateContent` call).
+The content after inserting the data into the template (i.e. `CreateContent()` call).
 
 ``` delphi
 property Variables[Name: string]: string;
