@@ -57,7 +57,7 @@ All template text consists of regular text and special commands. The markers of 
 * *for (with text file alias):* `{%for Text%}...{{Text}}...{%endfor%}`. Enumerates all lines in the text file (alias is a value in the `TSimpleTemplateParser.TextFiles` array) and processes each line. Variable with the same name as the text file alias (`Text`) outputs as the text file line, empty lines are skipped
 * *for (with dataset):* `{%for Dataset%}...{%endfor%}`. Enumerates all dataset records and processes each record (there might be field values, if-checks, etc.).
 
-Thats all, folks! © 
+That's all, folks! © 
 
 It is **really** simple parser.
 
@@ -110,7 +110,7 @@ procedure RemoveDataset(Dataset: TDataset);
 Add / remove the dataset. The `DisableScrollEvents` option means: if it is true then the engine will temporarily remove the dataset's `BeforeScroll` / `AfterScroll` event handlers when inserting the data.
 
 > [!WARNING]
-> Add all datasets you need **before** parsing because `Parse` method uses the dataset list to properly parse some commands like `{%if ...%}`, `{%for ...%}`, etc.
+> Add all datasets you need **before** parsing because `Parse()` method uses the dataset list to properly parse some commands like `{%if ...%}`, `{%for ...%}`, etc.
 
 ``` delphi
 procedure Parse;
@@ -145,6 +145,8 @@ A list of text file aliases and paths. E.g.: `TextFiles['Text'] := 'C:\myproject
 Demo
 ----
 The demo project uses IPro components and can be compiled under both Windows and GNU/Linux.
+
+It is very basic: the `ParserDemo.stp` file contains a simple "news" template, and `news.txt` is the list of news to display. 
 
 Author
 ------
