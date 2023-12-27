@@ -36,19 +36,14 @@ implementation
 { TfrmMain }
 
 procedure TfrmMain.FormCreate(Sender: TObject);
-var
-  StrHelpStream: TStringStream;
 begin
   Caption := Application.Title;
 
-  StrHelpStream := TStringStream.Create;
   try
-    StrHelpStream.LoadFromFile(ChangeFileExt(Application.ExeName, '.stp'));
-    FParser := TSimpleTemplateParser.Create(StrHelpStream.DataString);
-    FreeAndNil(StrHelpStream);
+    FParser := TSimpleTemplateParser.CreateFromFile(ChangeFileExt
+      (Application.ExeName, '.stp'));
   except
     FreeAndNil(FParser);
-    FreeAndNil(StrHelpStream);
     Application.Terminate;
     Exit;
   end;

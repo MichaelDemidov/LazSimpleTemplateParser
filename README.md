@@ -103,6 +103,24 @@ constructor Create(ATemplate: string);
 Create a new instance of the class. `ATemplate` is a template content (text).
 
 ``` delphi
+constructor CreateFromFile(AFileName: string);
+```
+
+Another constructor that creates a new instance of the class and loads a template from a file. It's easy to guess that `AFileName` is the name of the file.
+
+``` delphi
+procedure LoadFromStream(AStream: TStream);
+```
+
+Load the template string from the stream.
+
+``` delphi
+procedure LoadFromFile(AFileName: string);
+```
+
+Load the template string from the text file.
+
+``` delphi
 procedure AddDataset(Dataset: TDataset; DisableScrollEvents: Boolean = True);
 procedure RemoveDataset(Dataset: TDataset);
 ```

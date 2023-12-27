@@ -51,6 +51,7 @@ type
   public
     // constuctor and destuctor
     constructor Create(ATemplate: string);
+    constructor CreateFromFile(AFileName: string);
     destructor Destroy; override;
 
     // add the dataset into the list
@@ -59,6 +60,12 @@ type
 
     // remove the dataset from the list
     procedure RemoveDataset(Dataset: TDataset);
+
+    // load the template string from the stream
+    procedure LoadFromStream(AStream: TStream);
+
+    // load the template string from the text file
+    procedure LoadFromFile(AFileName: string);
 
     // prepare the inner structure (optional, called from CreateContent)
     procedure Parse;
@@ -111,6 +118,12 @@ begin
   FNoScrollDatasets := TComponentList.Create(False);
 end;
 
+constructor TSimpleTemplateParser.CreateFromFile(AFileName: string);
+begin
+  Create('');
+  LoadFromFile(AFileName);
+end;
+
 destructor TSimpleTemplateParser.Destroy;
 begin
   FreeAndNil(FTemplateEntitiesList);
@@ -121,6 +134,45 @@ begin
   FreeAndNil(FScrollDatasets);
   FreeAndNil(FNoScrollDatasets);
   inherited Destroy;
+end;
+
+procedure TSimpleTemplateParser.LoadFromFile(AFileName: string);
+var
+  StrStream: TStringStream;
+begin
+  StrStream := TStringStream.Create;
+  try
+    StrStream.LoadFromFile(AFileName);
+    FTemplate := StrStream.DataString;
+    FreeAndNil(StrStream);
+  except
+    FreeAndNil(StrStream);
+    raise;
+  end;
+end;
+
+procedure TSimpleTemplateParser.LoadFromStream(AStream: TStream);
+var
+  StrStream: TStringStream;
+begin
+  if Assigned(AStream) then
+  begin
+    if AStream is TStringStream then
+      FTemplate := (AStream as TStringStream).DataString
+    else
+    begin
+      AStream.Position := 0;
+      StrStream := TStringStream.Create;
+      try
+        StrStream.LoadFromStream(AStream);
+        FTemplate := StrStream.DataString;
+        FreeAndNil(StrStream);
+      except
+        FreeAndNil(StrStream);
+        raise;
+      end;
+    end;
+  end;
 end;
 
 procedure TSimpleTemplateParser.LoadTexts;
@@ -292,6 +344,7 @@ begin
   List := FTemplateEntitiesList;
   List.Clear;
   Stack := TObjectStack.Create;
+  Entity := nil;
 
   repeat
     LVarPos := Pos(CBracketVarLeft, FTemplate, LLastPos);
