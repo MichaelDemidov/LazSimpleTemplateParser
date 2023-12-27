@@ -1,8 +1,7 @@
 *.code-workspace
 backup
-demo/lib
-demo/backup
+demo/src/lib
+demo/src/backup
+demo/src/*.lps
 demo/*.exe
-demo/*.lps
 demo/*.dbg
-demo/LKLTest
