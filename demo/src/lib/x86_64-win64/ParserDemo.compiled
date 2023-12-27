@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="D:\lazarus\fpc\3.2.2\bin\x86_64-win64\fpc.exe" Date="1449429422"/>
-  <Params Value=" -MObjFPC -Scaghi -CirotR -O1 -gw3 -gl -gh -Xg -gt -WG -l -vewnhibq -FiD:\work\LazSimpleTemplateParser\demo\src\lib\x86_64-win64 -FuD:\work\LazSimpleTemplateParser -FuD:\lazarus\components\turbopower_ipro\units\x86_64-win64\win32 -FuD:\lazarus\components\printers\lib\x86_64-win64\win32 -FuD:\lazarus\components\cairocanvas\lib\x86_64-win64\win32 -FuD:\lazarus\lcl\units\x86_64-win64\win32 -FuD:\lazarus\lcl\units\x86_64-win64 -FuD:\lazarus\components\freetype\lib\x86_64-win64 -FuD:\lazarus\components\lazutils\lib\x86_64-win64 -FuD:\lazarus\packager\units\x86_64-win64 -FuD:\work\LazSimpleTemplateParser\demo\src\ -FUD:\work\LazSimpleTemplateParser\demo\src\lib\x86_64-win64\ -FED:\work\LazSimpleTemplateParser\demo\ -oD:\work\LazSimpleTemplateParser\demo\ParserDemo.exe -dLCL -dLCLwin32 ParserDemo.lpr"/>
-</CONFIG>
