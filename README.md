@@ -140,7 +140,7 @@ Start parsing. Usually you do not need to call this method manually because it i
 procedure CreateContent(AVarList: TStrings = nil);
 ```
 
-Insert the previously stored constants, variables, dataset data, etc. into the `Content` string. `AVarList` is a list of 'local' variables. But the `Variables` array takes precedence if some variable name is present here and there: the variables from `AVarList` are inserted in a place of `{{VAR_NAME}}` if the `Variables` array does not contain the given name.
+Insert the previously stored constants, variables, dataset data, etc. into the `Content` string. `AVarList` is a list of 'local' variables. But the `Variables` array takes precedence if some variable name is present here and there: the variables from `AVarList` are inserted in a place of `{{VAR_NAME}}` if the `Variables` array does not contain the given name. The parameter `AVarList` is useful when there are many parser instances with the same variables.
 
 ``` delphi
 property Content: string read FContent;
